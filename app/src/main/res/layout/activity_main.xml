@@ -51,12 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="POMO" />
-        <Button
-            android:id="@+id/takebreak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="BREAK" />
+
         <Button
             android:id="@+id/reset"
             android:layout_width="wrap_content"

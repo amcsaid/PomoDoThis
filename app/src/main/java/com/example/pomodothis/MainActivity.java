@@ -17,8 +17,12 @@ public class MainActivity extends AppCompatActivity {
     private Button startpomo, takebreak, reset;
     private ProgressBar mainprogbar;
 
-    CountDownTimer cdpromo, cdbreak;
+    private CountDownTimer cdpromo, cdbreak;
 
+
+    int promoduration = 1500000;
+    final int breakduration = 300000;
+    private boolean work = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,67 +31,60 @@ public class MainActivity extends AppCompatActivity {
         mainprogbar=(ProgressBar) findViewById(R.id.loading_spinner);
         status = (TextView)findViewById(R.id.tomatostatus);
         startpomo = (Button)findViewById(R.id.startpomo);
-        takebreak = (Button)findViewById(R.id.takebreak);
+        //takebreak = (Button)findViewById(R.id.takebreak);
         reset = (Button)findViewById(R.id.reset);
+
+        // always start with work
 
         startpomo.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View b) {
-                int duration = 1500000;
+                int duration = 0;
+                if (work) {
+                    duration = promoduration;
+                    startpomo.setHint("BREAK");
+                } else {
+                    duration = breakduration;
+                    startpomo.setHint("WORK");
+                }
+
+
+
                 mainprogbar.setMax(duration);
+                startpomo.setClickable(false);
+
                 Format f = new SimpleDateFormat("mm:ss");
-                takebreak.setClickable(false);
-                    cdpromo = new CountDownTimer(duration, 1000) {
+
+                cdpromo = new CountDownTimer(duration, 1000) {
 
                         public void onTick(long millisUntilFinished) {
                             status.setText(f.format(millisUntilFinished));
-                            mainprogbar.setProgress(duration - (int) millisUntilFinished);
+                            mainprogbar.setProgress((int) millisUntilFinished);
                             //here you can have your logic to set text to edittext
                         }
 
                         public void onFinish() {
                             status.setText("Done! Take your break now, or do some exercises!");
-                            takebreak.setClickable(true);
+                            mainprogbar.setProgress(0);
+                            startpomo.setClickable(true);
+                            work = !work;
                         }
-                    };
+                };
                 cdpromo.start();
             }
         });
 
-        takebreak.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View b) {
-                int duration = 300000;
-                mainprogbar.setMax(duration);
-                Format f = new SimpleDateFormat("mm:ss");
-                startpomo.setClickable(false);
-                    cdbreak = new CountDownTimer(duration, 1000) {
-
-                        public void onTick(long millisUntilFinished) {
-                            status.setText(f.format(millisUntilFinished));
-                            mainprogbar.setProgress(duration - (int) millisUntilFinished);
-                            //here you can have your logic to set text to edittext
-                        }
-
-                        public void onFinish() {
-                            status.setText("Get back to work!");
-                            startpomo.setClickable(true);
-                        }
-
-                    };
-                cdbreak.start();
-            }
-        });
 
         reset.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View b) {
 
-                if( takebreak.isClickable() && startpomo.isClickable()) {
-
-                } else if (takebreak.isClickable() && !startpomo.isClickable()) {
-                    cdbreak.cancel();
-                    startpomo.setClickable(true);
-                } else if (!takebreak.isClickable() && startpomo.isClickable()) {
+                if (!work) {
                     cdpromo.cancel();
-                    takebreak.setClickable(true);
+                    startpomo.setClickable(true);
+
+                } else {
+                    cdpromo.cancel();
+                    startpomo.setClickable(true);
+
                 }
 
                 mainprogbar.setProgress(0);
