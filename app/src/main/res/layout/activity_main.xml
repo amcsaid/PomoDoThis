@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,18 +13,33 @@
     android:text="Do your Pomodoros!"/>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+
+     <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
 
         <ProgressBar
             android:id="@+id/loading_spinner"
-            style="?android:progressBarStyle"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true" />
-    </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:max="1500000"
+            android:progress="1"
+            android:indeterminate="false"/>
+
+         <TextView android:id="@+id/tomatostatus"
+             android:layout_height="wrap_content"
+             android:layout_width="match_parent"
+             android:gravity="center"
+             android:hint="25:00:00"
+             android:textSize="32dp"
+             android:layout_weight="1"
+             />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,7 +47,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/pomodoro"
+            android:id="@+id/startpomo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -44,12 +58,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="BREAK" />
-        <Button
-            android:id="@+id/resettimer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="RESET" />
 
     </LinearLayout>
 
