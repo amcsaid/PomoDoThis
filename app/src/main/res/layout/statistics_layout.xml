@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical" >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0">
+
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+
+
+                <TextView android:id="@+id/stat1"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:hint="Pomos :"
+                    android:textSize="30dp"
+                    android:layout_weight="1"
+                    />
+
+                <TextView android:id="@+id/stat1val"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:hint="25"
+                    android:textSize="62dp"
+                    android:layout_weight="1"
+                    />
+                <TextView android:id="@+id/stat1tolal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:hint="125h:15min"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    />
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="30dp" >
+
+                <TextView android:id="@+id/stat2"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:hint="Breaks :"
+                    android:textSize="30dp"
+                    android:layout_weight="1"
+                    />
+
+                <TextView android:id="@+id/stat2val"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:hint="15"
+                    android:textSize="62dp"
+                    android:layout_weight="1"
+                    />
+                <TextView android:id="@+id/stat2tolal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:hint="55h:15min"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    />
+
+        </TableRow>
+
+        </TableLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingTop="16dp">
+
+
+        <TextView
+            android:id="@+id/graph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Graph :"
+            android:textSize="30dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
