@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     int promoduration = 1500000;
     final int breakduration = 300000;
-    private boolean work = true;
+    private boolean work = true; 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
