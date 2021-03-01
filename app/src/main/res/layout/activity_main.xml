@@ -1,63 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:orientation="vertical" >
 
-    <TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="0"
-    android:text="WORK? OR EXERCISE?"/>
-
-
-
      <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0">
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal"
+                 android:layout_weight="0">
 
-        <ProgressBar
-            android:id="@+id/loading_spinner"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_weight="1"
-            android:progress="0"
-            android:indeterminate="false"/>
+                 <TextView android:id="@+id/tomatostatus"
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"
+                     android:hint="25:00"
+                     android:textSize="62dp"
+                     android:layout_weight="1"
+                     />
 
-         <TextView android:id="@+id/tomatostatus"
-             android:layout_height="wrap_content"
+                 <Button
+                     android:id="@+id/reset"
+                     style="@style/Widget.AppCompat.Button.Borderless"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:gravity="top"
+                     android:text="(reset)"
+                     android:textColor="@color/material_on_surface_disabled"
+                     app:backgroundTint="#FFFFFF"
+                     android:layout_weight="0"/>
+
+
+             </LinearLayout>
+
+         <ProgressBar
+             android:id="@+id/loading_spinner"
+             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
              android:layout_width="match_parent"
-             android:gravity="center"
-             android:hint="25:00"
-             android:textSize="32dp"
-             android:layout_weight="1"
-             />
+             android:layout_height="wrap_content"
+             android:layout_centerInParent="true"
+             android:scaleY="2"
+             android:layout_weight="0"
+             android:indeterminate="false"
+             android:progress="0" />
+
+
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="WORK? OR EXERCISE?"
+        android:layout_weight="1"
+        />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_weight="0">
 
         <Button
             android:id="@+id/startpomo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="POMO" />
+            android:text="START A POMODORO" />
 
-        <Button
-            android:id="@+id/reset"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="RESET" />
+
 
     </LinearLayout>
 

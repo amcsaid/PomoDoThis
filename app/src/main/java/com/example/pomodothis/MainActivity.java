@@ -16,13 +16,15 @@ public class MainActivity extends AppCompatActivity {
     private TextView status;
     private Button startpomo, takebreak, reset;
     private ProgressBar mainprogbar;
-
     private CountDownTimer cdpromo, cdbreak;
 
 
-    int promoduration = 1500000;
-    final int breakduration = 300000;
-    private boolean work = true; 
+    //int promoduration = 1500000;
+    //int breakduration = 300000;
+
+    int promoduration = 15000;
+    int breakduration = 3000;
+    private boolean work = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
                 int duration = 0;
                 if (work) {
                     duration = promoduration;
-                    startpomo.setHint("BREAK");
+                    startpomo.setText("TAKE A BREAK");
                 } else {
                     duration = breakduration;
-                    startpomo.setHint("WORK");
+                    startpomo.setText("WORK MORE");
                 }
 
 
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         public void onFinish() {
-                            status.setText("Done! Take your break now, or do some exercises!");
+                            status.setText("DONE!");
                             mainprogbar.setProgress(0);
                             startpomo.setClickable(true);
                             work = !work;
