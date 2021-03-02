@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     private TextView status;
@@ -25,14 +26,22 @@ public class MainActivity extends AppCompatActivity {
     //int promoduration = 1500000;
     //int breakduration = 300000;
 
-    int promoduration = 15000;
-    int breakduration = 3000;
+    int promoduration = 3500;
+    int breakduration = 2500;
     private boolean work = true;
+
+    // today's stats
+    static int number_of_pomos = 0;
+    static int number_of_breaks = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
         mainprogbar=(ProgressBar) findViewById(R.id.loading_spinner);
         status = (TextView)findViewById(R.id.tomatostatus);
         startpomo = (Button)findViewById(R.id.startpomo);
@@ -75,6 +84,13 @@ public class MainActivity extends AppCompatActivity {
                             status.setText("DONE!");
                             mainprogbar.setProgress(0);
                             startpomo.setClickable(true);
+
+                            if (work) {
+                                number_of_pomos++;
+                            } else {
+                                number_of_breaks++;
+                            }
+
                             work = !work;
                         }
                 };
@@ -88,10 +104,12 @@ public class MainActivity extends AppCompatActivity {
                     cdpromo.cancel();
                     startpomo.setClickable(true);
                     status.setText("05:00");
+
                 } else {
                     cdpromo.cancel();
                     startpomo.setClickable(true);
                     status.setText("25:00");
+
                 }
                 mainprogbar.setProgress(0);
             }
@@ -105,19 +123,13 @@ public class MainActivity extends AppCompatActivity {
                 ShowStats();
             }
         });
-
-
     }
 
-    @Override
-    protected void onDestroy() {
 
-        super.onDestroy();
-    }
     /*** Activity methodes decaltrations ***/
 
     public void ShowStats () {
-        Toast.makeText(this, "Down", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Down", Toast.LENGTH_SHORT).show();
         Intent myIntent = new Intent(this, Statistics_Activity.class);
         startActivity(myIntent);
     }

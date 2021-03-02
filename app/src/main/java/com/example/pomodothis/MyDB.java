@@ -2,8 +2,11 @@ package com.example.pomodothis;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 public class MyDB extends SQLiteOpenHelper {
     private static final int VERSION_DB = 1;
@@ -67,6 +70,21 @@ public class MyDB extends SQLiteOpenHelper {
         int result = db.update(STATS_TB_NAME, valeurs,"date=?",args);
         if(result!=-1) return true;
         else return false;
+    }
+
+    public ArrayList<String> getAllStats() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<String> mybooklist = new ArrayList<>();
+        Cursor mycursor = db.rawQuery("SELECT * FROM "+ STATS_TB_NAME, null);
+
+        if(mycursor.moveToNext()) {
+            do {
+                mybooklist.add(
+                        mycursor.getString(mycursor.getColumnIndex(STATS_CLN_DATE))
+                );
+            } while (mycursor.moveToNext());
+        }
+        return mybooklist;
     }
 
 
