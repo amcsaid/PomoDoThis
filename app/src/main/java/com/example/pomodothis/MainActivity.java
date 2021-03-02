@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 
 public class MainActivity extends AppCompatActivity {
     private TextView status;
-    private Button startpomo, takebreak, reset;
+    private Button startpomo, reset;
     private ProgressBar mainprogbar;
     private CountDownTimer cdpromo, cdbreak;
     private View myView;
@@ -84,19 +84,16 @@ public class MainActivity extends AppCompatActivity {
 
         reset.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View b) {
-
                 if (!work) {
                     cdpromo.cancel();
                     startpomo.setClickable(true);
-
+                    status.setText("05:00");
                 } else {
                     cdpromo.cancel();
                     startpomo.setClickable(true);
-
+                    status.setText("25:00");
                 }
-
                 mainprogbar.setProgress(0);
-                status.setText("25:00");
             }
         });
 
@@ -111,7 +108,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    /*** Activity methode decaltrations ***/
+
+    @Override
+    protected void onDestroy() {
+
+        super.onDestroy();
+    }
+    /*** Activity methodes decaltrations ***/
 
     public void ShowStats () {
         Toast.makeText(this, "Down", Toast.LENGTH_SHORT).show();

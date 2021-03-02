@@ -11,5 +11,7 @@ public class Statistics_Activity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.statistics_layout);
+
+
     }
 }
