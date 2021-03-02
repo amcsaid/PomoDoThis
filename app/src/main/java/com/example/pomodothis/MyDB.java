@@ -104,7 +104,7 @@ public class MyDB extends SQLiteOpenHelper {
     }
 
     public Today getToday() {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Today today = new Today();
 
         String[] args={today.getDate()};

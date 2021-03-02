@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean work = true;
 
     // today's stats
-    static Today todayObject = new Today();
+    Today todayObject = new Today();
 
 
     @Override
@@ -112,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         /* views experimenting */
         myView.setOnTouchListener(new OnSwipeTouchListener(this) {
             @Override
@@ -123,17 +122,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
+    protected void onPause() {
         this.saveTodayObject();
-        super.onStop();
+        super.onPause();
     }
 
     @Override
-    protected void onRestart() {
+    protected void onResume() {
         this.todayObject = new Today();
-        super.onRestart();
+        super.onResume();
     }
-
 
 
     /*** Activity methodes decaltrations ***/

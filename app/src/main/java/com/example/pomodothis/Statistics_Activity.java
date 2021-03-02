@@ -15,6 +15,7 @@ import java.util.Date;
 
 public class Statistics_Activity extends AppCompatActivity {
     private TextView todayPomos, todayBreaks, totalPomos, totalBreaks;
+    private MyDB db ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +28,16 @@ public class Statistics_Activity extends AppCompatActivity {
         totalPomos  =   (TextView) findViewById(R.id.totalPomos);
         totalBreaks =   (TextView) findViewById(R.id.totalBreaks);
 
-
-
         // declating a new database
-        MyDB db = new MyDB(this.getApplicationContext());
+        db = new MyDB(this.getApplicationContext());
 
-        Today today = db.getToday();
-        todayPomos.setText(String.valueOf(today.getPomos()));
-        todayBreaks.setText(String.valueOf(today.getBreaks()));
+        this.updateTodayStats();
+    }
+
+    @Override
+    protected void onRestart() {
+        this.updateTodayStats();
+        super.onRestart();
     }
 
 
@@ -46,15 +49,10 @@ public class Statistics_Activity extends AppCompatActivity {
 
 
     // Update today's stats
-    /*public void updateTodayStats() {
+    public void updateTodayStats() {
         // Getting the date and formatting it
-        Format f = new SimpleDateFormat("dd-MM-yyyy");
-        Date now = new Date();
-        String strDate = f.format(now);
-
-        // Creating the sql update
-        boolean isAdded = db.addToday(strDate, MainActivity.number_of_pomos, MainActivity.number_of_breaks); //(String today, int pomos, int breaks)
-        //debug
-        Toast.makeText(getApplicationContext(), strDate+ "is added ?" + isAdded, Toast.LENGTH_LONG).show();
-    }*/
+        Today today = db.getToday();
+        todayPomos.setText(String.valueOf(today.getPomos()));
+        todayBreaks.setText(String.valueOf(today.getBreaks()));
+    }
 }
