@@ -68,7 +68,7 @@ public class MyDB extends SQLiteOpenHelper {
         valeurs.put(STATS_CLN_POMO      , String.valueOf(today.getPomos()));
         valeurs.put(STATS_CLN_BREAK     , String.valueOf(today.getBreaks()));
 
-        String[] args={today+""};
+        String[] args={today.getDate()+""};
 
         int result = db.update(STATS_TB_NAME, valeurs,"date=?",args);
         if(result!=-1) return true;

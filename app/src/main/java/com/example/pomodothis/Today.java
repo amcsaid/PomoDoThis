@@ -71,4 +71,13 @@ public class Today {
     public void setBreaks(int breaks) {
         this.breaks = breaks;
     }
+
+    @Override
+    public String toString() {
+        return "Today{" +
+                "date='" + date + '\'' +
+                ", pomos=" + pomos +
+                ", breaks=" + breaks +
+                '}';
+    }
 }

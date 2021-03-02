@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.Format;
@@ -12,14 +14,27 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Statistics_Activity extends AppCompatActivity {
+    private TextView todayPomos, todayBreaks, totalPomos, totalBreaks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.statistics_layout);
 
+        // Find Views By ID
+        todayPomos  =   (TextView) findViewById(R.id.todayPomos);
+        todayBreaks =   (TextView) findViewById(R.id.todayBreaks);
+        totalPomos  =   (TextView) findViewById(R.id.totalPomos);
+        totalBreaks =   (TextView) findViewById(R.id.totalBreaks);
 
-        //updateTodayStats();
+
+
+        // declating a new database
+        MyDB db = new MyDB(this.getApplicationContext());
+
+        Today today = db.getToday();
+        todayPomos.setText(String.valueOf(today.getPomos()));
+        todayBreaks.setText(String.valueOf(today.getBreaks()));
     }
 
 

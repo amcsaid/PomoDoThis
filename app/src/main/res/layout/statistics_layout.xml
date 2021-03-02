@@ -30,17 +30,17 @@
                     android:layout_weight="1"
                     />
 
-                <TextView android:id="@+id/stat1val"
+                <TextView android:id="@+id/todayPomos"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:hint="25"
+                    android:hint="00"
                     android:textSize="62dp"
                     android:layout_weight="1"
                     />
-                <TextView android:id="@+id/stat1tolal"
+                <TextView android:id="@+id/totalPomos"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:hint="125h:15min"
+                    android:hint="00h:00min"
                     android:textSize="20dp"
                     android:layout_weight="1"
                     />
@@ -61,17 +61,17 @@
                     android:layout_weight="1"
                     />
 
-                <TextView android:id="@+id/stat2val"
+                <TextView android:id="@+id/todayBreaks"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:hint="15"
+                    android:hint="00"
                     android:textSize="62dp"
                     android:layout_weight="1"
                     />
-                <TextView android:id="@+id/stat2tolal"
+                <TextView android:id="@+id/totalBreaks"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:hint="55h:15min"
+                    android:hint="00h:00min"
                     android:textSize="20dp"
                     android:layout_weight="1"
                     />

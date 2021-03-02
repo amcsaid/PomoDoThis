@@ -152,7 +152,9 @@ public class MainActivity extends AppCompatActivity {
             todayObject.setPomos(todayObject.getPomos() + savedToday.getPomos());
 
             db.updateToday(todayObject);
+
         } else {
+            Toast.makeText(getApplicationContext(), "Creating new object", Toast.LENGTH_SHORT).show();
             db.addToday(todayObject);
         }
     }
