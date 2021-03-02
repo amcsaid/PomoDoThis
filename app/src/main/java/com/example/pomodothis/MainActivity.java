@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar mainprogbar;
     private CountDownTimer cdpromo, cdbreak;
     private View myView;
-
+    private MyDB db;
 
     //int promoduration = 1500000;
     //int breakduration = 300000;
@@ -31,14 +31,14 @@ public class MainActivity extends AppCompatActivity {
     private boolean work = true;
 
     // today's stats
-    static int number_of_pomos = 0;
-    static int number_of_breaks = 0;
+    static Today todayObject = new Today();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        db = new MyDB(this.getApplicationContext());
 
 
 
@@ -50,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
         myView = findViewById(R.id.main_activity_id);
 
         // always start with work
-
-
 
 
         startpomo.setOnClickListener(new Button.OnClickListener() {
@@ -86,11 +84,10 @@ public class MainActivity extends AppCompatActivity {
                             startpomo.setClickable(true);
 
                             if (work) {
-                                number_of_pomos++;
+                                todayObject.incrementPomos();
                             } else {
-                                number_of_breaks++;
+                                todayObject.incrementBreaks();
                             }
-
                             work = !work;
                         }
                 };
@@ -125,6 +122,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStop() {
+        this.saveTodayObject();
+        super.onStop();
+    }
+
+    @Override
+    protected void onRestart() {
+        this.todayObject = new Today();
+        super.onRestart();
+    }
+
+
 
     /*** Activity methodes decaltrations ***/
 
@@ -134,4 +144,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(myIntent);
     }
 
+    public void saveTodayObject() {
+        if(db.isToday(todayObject.getDate())) {
+            Today savedToday = db.getToday();
+
+            todayObject.setBreaks(todayObject.getBreaks() + savedToday.getBreaks());
+            todayObject.setPomos(todayObject.getPomos() + savedToday.getPomos());
+
+            db.updateToday(todayObject);
+        } else {
+            db.addToday(todayObject);
+        }
+    }
 }

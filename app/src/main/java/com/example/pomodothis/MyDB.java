@@ -40,12 +40,16 @@ public class MyDB extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addToday(String today, int pomos, int breaks){
+    public boolean addToday(Today today){
+        String date = today.getDate();
+        String pomos = String.valueOf(today.getPomos());
+        String breaks = String.valueOf(today.getPomos());
+
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues valeurs = new ContentValues();
 
-        valeurs.put(STATS_CLN_DATE    , today);
+        valeurs.put(STATS_CLN_DATE    , date);
         valeurs.put(STATS_CLN_POMO   , pomos);
         valeurs.put(STATS_CLN_BREAK     , breaks);
 
@@ -54,16 +58,15 @@ public class MyDB extends SQLiteOpenHelper {
         else return false;
     }
 
-    public boolean modToday(String today, int pomos, int breaks){
+    public boolean updateToday(Today today){
         SQLiteDatabase db = this.getWritableDatabase();
 
         //db.execSQL("UPDATE stats SET titre= "+livre.getYear()+" WHERE id="+livre.getId());
 
         ContentValues valeurs =new ContentValues();
 
-        valeurs.put(STATS_CLN_DATE    , today);
-        valeurs.put(STATS_CLN_POMO   , pomos);
-        valeurs.put(STATS_CLN_BREAK     , breaks);
+        valeurs.put(STATS_CLN_POMO      , String.valueOf(today.getPomos()));
+        valeurs.put(STATS_CLN_BREAK     , String.valueOf(today.getBreaks()));
 
         String[] args={today+""};
 
@@ -87,5 +90,36 @@ public class MyDB extends SQLiteOpenHelper {
         return mybooklist;
     }
 
+    // Returns true if an entry for "Today" is already saved
+    public boolean isToday(String date) {
+        SQLiteDatabase db = this.getReadableDatabase();
 
+        String[] args={date};
+        Cursor mycursor = db.rawQuery("SELECT * FROM "+ STATS_TB_NAME + " WHERE "+STATS_CLN_DATE+"=?", args);
+
+        if(mycursor.moveToNext()) {
+            return true;
+        }
+        return false;
+    }
+
+    public Today getToday() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Today today = new Today();
+
+        String[] args={today.getDate()};
+        Cursor mycursor = db.rawQuery("SELECT * FROM "+ STATS_TB_NAME + " WHERE "+STATS_CLN_DATE+"=?", args);
+
+        if(mycursor.moveToNext()) {
+            do {
+                today.setPomos(
+                        Integer.valueOf(mycursor.getString(mycursor.getColumnIndex(STATS_CLN_POMO)))
+                );
+                today.setBreaks(
+                        Integer.valueOf(mycursor.getString(mycursor.getColumnIndex(STATS_CLN_BREAK)))
+                );
+            } while (mycursor.moveToNext());
+        }
+        return today;
+    }
 }
