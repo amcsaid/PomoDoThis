@@ -75,16 +75,33 @@ public class MyDB extends SQLiteOpenHelper {
         else return false;
     }
 
-    public ArrayList<Today> getAllStats() {
-        SQLiteDatabase db = this.getWritableDatabase();
+    /*public ArrayList<Today> getAllStats() {
+        SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Today> days = new ArrayList<>();
         Cursor mycursor = db.rawQuery("SELECT * FROM "+ STATS_TB_NAME, null);
 
         if(mycursor.moveToNext()) {
             do {
-                days.add( new Today(mycursor.getString(mycursor.getColumnIndex(STATS_CLN_DATE)),
-                                mycursor.getInt(mycursor.getColumnIndex(STATS_CLN_DATE)),
-                                mycursor.getInt(mycursor.getColumnIndex(STATS_CLN_DATE)))
+                days.add( new Today(mycursor.getString(1),
+                                mycursor.getString(2),
+                                mycursor.getString(3))
+                );
+            } while (mycursor.moveToNext());
+        }
+        return days;
+    }*/
+
+    public ArrayList<String> getAllStats() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<String> days = new ArrayList<>();
+        Cursor mycursor = db.rawQuery("SELECT * FROM "+ STATS_TB_NAME, null);
+
+        if(mycursor.moveToNext()) {
+            do {
+                days.add(
+                        mycursor.getString(1) + ": "
+                                + mycursor.getString(2) + ": "
+                                + mycursor.getString(3) + ": "
                 );
             } while (mycursor.moveToNext());
         }

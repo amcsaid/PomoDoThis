@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 public class MyAdapterForStats extends  RecyclerView.Adapter<MyAdapterForStats.Myholder>{
     Context context;
-    ArrayList<Today> lesstats;
+    ArrayList<String> lesstats;
 
-    MyAdapterForStats (Context cntxt, ArrayList<Today> lesstats) {
+    MyAdapterForStats (Context cntxt, ArrayList<String> lesstats) {
         this.context = cntxt;
         this.lesstats = lesstats;
     }
@@ -53,8 +53,9 @@ public class MyAdapterForStats extends  RecyclerView.Adapter<MyAdapterForStats.M
 
     @Override
     public void onBindViewHolder(@NonNull Myholder holder, int position) {
-        Today a=lesstats.get(position);
-        holder.date.setText(a.getDate());
-        holder.stat.setText(a.getPomos());
+        //Today a=lesstats.get(position);
+        String a=lesstats.get(position);
+        holder.date.setText(a.toString());
+        holder.stat.setText(a.toString());
     }
 }

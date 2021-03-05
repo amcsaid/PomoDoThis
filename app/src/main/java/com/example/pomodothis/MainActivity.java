@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -138,6 +139,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void ShowStats () {
         //Toast.makeText(this, "Down", Toast.LENGTH_SHORT).show();
+
+
         Intent myIntent = new Intent(this, Statistics_Activity.class);
         startActivity(myIntent);
     }

@@ -1,8 +1,10 @@
 package com.example.pomodothis;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -16,7 +18,7 @@ import java.util.Date;
 
 public class Statistics_Activity extends AppCompatActivity {
     private TextView todayPomos, todayBreaks, totalPomos, totalBreaks;
-    private RecyclerView myrecycler;
+
     private MyDB db ;
 
     @Override
@@ -35,11 +37,6 @@ public class Statistics_Activity extends AppCompatActivity {
 
         this.updateTodayStats();
 
-        // Declaring the recycler
-        myrecycler = findViewById(R.id.recycler);
-        // Declaring a list of all days from DB
-        ArrayList<Today> liste = db.getAllStats();;
-
     }
 
     @Override
@@ -50,8 +47,8 @@ public class Statistics_Activity extends AppCompatActivity {
 
     // Button to show all
     public void showmeall(View view) {
-        ArrayList<Today> stats = db.getAllStats();
-        Toast.makeText(getApplicationContext(), stats.toString(), Toast.LENGTH_LONG).show();
+        Intent myIntentS = new Intent(this, AllStatistics.class);
+        startActivity(myIntentS);
     }
     
     // Update today's stats
