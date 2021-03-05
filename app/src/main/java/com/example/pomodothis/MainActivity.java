@@ -139,8 +139,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void ShowStats () {
         //Toast.makeText(this, "Down", Toast.LENGTH_SHORT).show();
-
-
         Intent myIntent = new Intent(this, Statistics_Activity.class);
         startActivity(myIntent);
     }

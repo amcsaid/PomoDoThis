@@ -23,8 +23,7 @@ public class AllStatistics extends AppCompatActivity {
         // Declaring the recycler
         myrecycler = findViewById(R.id.recycler);
         // Declaring a list of all days from DB
-        ArrayList<String> liste = db.getAllStats();;
-        //Toast.makeText(getApplicationContext(), liste.toString(), Toast.LENGTH_LONG).show();
+        ArrayList<Today> liste = db.getAllStats();;
 
         // creating my adapter
         MyAdapterForStats rv_adapter = new MyAdapterForStats(this.getApplicationContext(), liste);

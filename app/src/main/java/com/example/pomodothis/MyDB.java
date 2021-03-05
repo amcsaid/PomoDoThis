@@ -75,7 +75,7 @@ public class MyDB extends SQLiteOpenHelper {
         else return false;
     }
 
-    /*public ArrayList<Today> getAllStats() {
+    public ArrayList<Today> getAllStats() {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Today> days = new ArrayList<>();
         Cursor mycursor = db.rawQuery("SELECT * FROM "+ STATS_TB_NAME, null);
@@ -83,15 +83,16 @@ public class MyDB extends SQLiteOpenHelper {
         if(mycursor.moveToNext()) {
             do {
                 days.add( new Today(mycursor.getString(1),
-                                mycursor.getString(2),
-                                mycursor.getString(3))
-                );
+                                Integer.valueOf(mycursor.getString(2)),
+                                Integer.valueOf(mycursor.getString(3))
+                                )
+                        );
             } while (mycursor.moveToNext());
         }
         return days;
-    }*/
+    }
 
-    public ArrayList<String> getAllStats() {
+    public ArrayList<String> getAllStatsString() {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String> days = new ArrayList<>();
         Cursor mycursor = db.rawQuery("SELECT * FROM "+ STATS_TB_NAME, null);
