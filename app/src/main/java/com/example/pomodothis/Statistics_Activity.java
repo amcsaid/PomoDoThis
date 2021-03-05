@@ -1,6 +1,7 @@
 package com.example.pomodothis;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import java.util.Date;
 
 public class Statistics_Activity extends AppCompatActivity {
     private TextView todayPomos, todayBreaks, totalPomos, totalBreaks;
+    private RecyclerView myrecycler;
     private MyDB db ;
 
     @Override
@@ -32,22 +34,26 @@ public class Statistics_Activity extends AppCompatActivity {
         db = new MyDB(this.getApplicationContext());
 
         this.updateTodayStats();
+
+        // Declaring the recycler
+        myrecycler = findViewById(R.id.recycler);
+        // Declaring a list of all days from DB
+        ArrayList<Today> liste = db.getAllStats();;
+
     }
 
     @Override
-    protected void onRestart() {
+    protected void onResume() {
         this.updateTodayStats();
-        super.onRestart();
+        super.onResume();
     }
 
-
     // Button to show all
-    /*public void showmeall(View view) {
-        ArrayList<String> stats = db.getAllStats();
+    public void showmeall(View view) {
+        ArrayList<Today> stats = db.getAllStats();
         Toast.makeText(getApplicationContext(), stats.toString(), Toast.LENGTH_LONG).show();
-    }*/
-
-
+    }
+    
     // Update today's stats
     public void updateTodayStats() {
         // Getting the date and formatting it

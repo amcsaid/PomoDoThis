@@ -75,19 +75,20 @@ public class MyDB extends SQLiteOpenHelper {
         else return false;
     }
 
-    public ArrayList<String> getAllStats() {
+    public ArrayList<Today> getAllStats() {
         SQLiteDatabase db = this.getWritableDatabase();
-        ArrayList<String> mybooklist = new ArrayList<>();
+        ArrayList<Today> days = new ArrayList<>();
         Cursor mycursor = db.rawQuery("SELECT * FROM "+ STATS_TB_NAME, null);
 
         if(mycursor.moveToNext()) {
             do {
-                mybooklist.add(
-                        mycursor.getString(mycursor.getColumnIndex(STATS_CLN_DATE))
+                days.add( new Today(mycursor.getString(mycursor.getColumnIndex(STATS_CLN_DATE)),
+                                mycursor.getInt(mycursor.getColumnIndex(STATS_CLN_DATE)),
+                                mycursor.getInt(mycursor.getColumnIndex(STATS_CLN_DATE)))
                 );
             } while (mycursor.moveToNext());
         }
-        return mybooklist;
+        return days;
     }
 
     // Returns true if an entry for "Today" is already saved
