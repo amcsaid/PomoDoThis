@@ -57,5 +57,16 @@ public class Statistics_Activity extends AppCompatActivity {
         Today today = db.getToday();
         todayPomos.setText(String.valueOf(today.getPomos()));
         todayBreaks.setText(String.valueOf(today.getBreaks()));
+        totalPomos.setText(minutesToFormat(today.getPomos() * 25));
+        totalBreaks.setText(minutesToFormat(today.getBreaks() * 5));
+
+    }
+
+    public static String minutesToFormat(int totalMinutes) {
+        int hours   = totalMinutes / 60 ;
+        int minutes = totalMinutes % 60;
+
+
+        return String.format("%dH:%02dMin", hours, minutes);
     }
 }
