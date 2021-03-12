@@ -91,23 +91,7 @@ public class MyDB extends SQLiteOpenHelper {
         }
         return days;
     }
-
-    public ArrayList<String> getAllStatsString() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<String> days = new ArrayList<>();
-        Cursor mycursor = db.rawQuery("SELECT * FROM "+ STATS_TB_NAME, null);
-
-        if(mycursor.moveToNext()) {
-            do {
-                days.add(
-                        mycursor.getString(1) + ": "
-                                + mycursor.getString(2) + ": "
-                                + mycursor.getString(3) + ": "
-                );
-            } while (mycursor.moveToNext());
-        }
-        return days;
-    }
+    
 
     // Returns true if an entry for "Today" is already saved
     public boolean isToday(String date) {

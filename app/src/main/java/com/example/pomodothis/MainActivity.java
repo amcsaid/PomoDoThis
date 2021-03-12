@@ -42,16 +42,11 @@ public class MainActivity extends AppCompatActivity {
         db = new MyDB(this.getApplicationContext());
 
 
-
         mainprogbar=(ProgressBar) findViewById(R.id.loading_spinner);
         status = (TextView)findViewById(R.id.tomatostatus);
         startpomo = (Button)findViewById(R.id.startpomo);
-        //takebreak = (Button)findViewById(R.id.takebreak);
         reset = (Button)findViewById(R.id.reset);
         myView = findViewById(R.id.main_activity_id);
-
-        // always start with work
-
 
         startpomo.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View b) {
