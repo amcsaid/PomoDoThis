@@ -91,7 +91,7 @@ public class MyDB extends SQLiteOpenHelper {
         }
         return days;
     }
-    
+
 
     // Returns true if an entry for "Today" is already saved
     public boolean isToday(String date) {
