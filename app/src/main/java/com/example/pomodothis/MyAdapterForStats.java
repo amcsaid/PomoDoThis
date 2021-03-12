@@ -37,11 +37,13 @@ public class MyAdapterForStats extends  RecyclerView.Adapter<MyAdapterForStats.M
     class Myholder extends RecyclerView.ViewHolder{
         TextView date;
         TextView stat;
+        TextView breaks;
         public Myholder(@NonNull View itemView)
         {
             super(itemView);
             date=itemView.findViewById(R.id.date);
             stat=itemView.findViewById(R.id.productivity);
+            breaks=itemView.findViewById(R.id.allbreaks);
         }
     }
 
@@ -61,6 +63,7 @@ public class MyAdapterForStats extends  RecyclerView.Adapter<MyAdapterForStats.M
         Today a=lesstats.get(position);
         //String a=lesstats.get(position);
         holder.date.setText(a.getDate());
-        holder.stat.setText(String.valueOf(a.getPomos()));
+        holder.stat.setText(Statistics_Activity.minutesToFormat(a.getPomos() * 25));
+        holder.breaks.setText(Statistics_Activity.minutesToFormat(a.getBreaks() * 5));
     }
 }

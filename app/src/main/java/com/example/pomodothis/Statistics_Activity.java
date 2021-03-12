@@ -18,6 +18,7 @@ import java.util.Date;
 
 public class Statistics_Activity extends AppCompatActivity {
     private TextView todayPomos, todayBreaks, totalPomos, totalBreaks;
+    Intent myIntentS;
 
     private MyDB db ;
 
@@ -47,8 +48,14 @@ public class Statistics_Activity extends AppCompatActivity {
 
     // Button to show all
     public void showmeall(View view) {
-        Intent myIntentS = new Intent(this, AllStatistics.class);
-        startActivity(myIntentS);
+
+
+        if(myIntentS==null){
+            myIntentS = new Intent(this, AllStatistics.class);
+            startActivity(myIntentS);
+        } else {
+            startActivity(myIntentS);
+        }
     }
     
     // Update today's stats

@@ -23,12 +23,12 @@ public class MainActivity extends AppCompatActivity {
     private CountDownTimer cdpromo, cdbreak;
     private View myView;
     private MyDB db;
+    Intent myIntent;
 
-    //int promoduration = 1500000;
-    //int breakduration = 300000;
+    int promoduration = 1500000; // 25 Min
+    int breakduration = 300000; // 5 Min
 
-    int promoduration = 3500;
-    int breakduration = 2500;
+
     private boolean work = true;
 
     // today's stats
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onTick(long millisUntilFinished) {
                             status.setText(f.format(millisUntilFinished));
                             mainprogbar.setProgress((int) millisUntilFinished);
-                            //here you can have your logic to set text to edittext
+
                         }
 
                         public void onFinish() {
@@ -102,11 +102,13 @@ public class MainActivity extends AppCompatActivity {
                     cdpromo.cancel();
                     startpomo.setClickable(true);
                     status.setText("05:00");
+                    startpomo.setText("TAKE A BREAK");
 
                 } else {
                     cdpromo.cancel();
                     startpomo.setClickable(true);
                     status.setText("25:00");
+                    startpomo.setText("START A POMODORO");
 
                 }
                 mainprogbar.setProgress(0);
@@ -147,7 +149,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ShowStats(View view) {
-        Intent myIntent = new Intent(this, Statistics_Activity.class);
-        startActivity(myIntent);
+        if(myIntent==null){
+            myIntent = new Intent(this, Statistics_Activity.class);
+            startActivity(myIntent);
+        } else {
+            startActivity(myIntent);
+        }
     }
 }
