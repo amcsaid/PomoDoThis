@@ -14,9 +14,11 @@ import java.util.ArrayList;
 public class MyAdapterForStats extends  RecyclerView.Adapter<MyAdapterForStats.Myholder>{
     Context context;
     ArrayList<Today> lesstats;
+    private LayoutInflater mInflater;
 
     MyAdapterForStats (Context cntxt, ArrayList<Today> lesstats) {
         this.context = cntxt;
+        this.mInflater = LayoutInflater.from(context);
         this.lesstats = lesstats;
     }
 
@@ -46,8 +48,11 @@ public class MyAdapterForStats extends  RecyclerView.Adapter<MyAdapterForStats.M
     @NonNull
     @Override
     public Myholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.mini_stat_layout,null,false);
-        Myholder h=new Myholder(v);
+        //View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.mini_stat_layout,null,false);
+
+        View v = mInflater.inflate(R.layout.mini_stat_layout,parent,false);
+
+        Myholder h = new Myholder(v);
         return h;
     }
 

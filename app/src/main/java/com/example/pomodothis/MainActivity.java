@@ -112,14 +112,6 @@ public class MainActivity extends AppCompatActivity {
                 mainprogbar.setProgress(0);
             }
         });
-
-        /* views experimenting */
-        myView.setOnTouchListener(new OnSwipeTouchListener(this) {
-            @Override
-            public void onSwipeRight() {
-                ShowStats();
-            }
-        });
     }
 
     @Override
@@ -137,11 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
     /*** Activity methodes decaltrations ***/
 
-    public void ShowStats () {
-        //Toast.makeText(this, "Down", Toast.LENGTH_SHORT).show();
-        Intent myIntent = new Intent(this, Statistics_Activity.class);
-        startActivity(myIntent);
-    }
+
 
     public void saveTodayObject() {
         if(db.isToday(todayObject.getDate())) {
@@ -156,5 +144,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Creating new object", Toast.LENGTH_SHORT).show();
             db.addToday(todayObject);
         }
+    }
+
+    public void ShowStats(View view) {
+        Intent myIntent = new Intent(this, Statistics_Activity.class);
+        startActivity(myIntent);
     }
 }

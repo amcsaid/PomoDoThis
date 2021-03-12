@@ -12,26 +12,28 @@ import java.util.ArrayList;
 public class AllStatistics extends AppCompatActivity {
     private RecyclerView myrecycler;
     private MyDB db ;
+    MyAdapterForStats rv_adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_statistics);
 
-
         db = new MyDB(this.getApplicationContext());
-
-        // Declaring the recycler
-        myrecycler = findViewById(R.id.recycler);
         // Declaring a list of all days from DB
         ArrayList<Today> liste = db.getAllStats();;
 
+
+        // Declaring the recycler
+        myrecycler = findViewById(R.id.recycler);
+        myrecycler.setLayoutManager(new LinearLayoutManager(this));
+
         // creating my adapter
-        MyAdapterForStats rv_adapter = new MyAdapterForStats(this.getApplicationContext(), liste);
+        rv_adapter = new MyAdapterForStats(this, liste);
 
         //defining my recycler view
-        RecyclerView.LayoutManager lm = new LinearLayoutManager(this.getApplicationContext());
-        myrecycler.setHasFixedSize(true);
-        myrecycler.setLayoutManager(lm);
+        //myrecycler.setHasFixedSize(true);
+
         myrecycler.setAdapter(rv_adapter);
     }
 }
